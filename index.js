@@ -20,14 +20,20 @@ app.use(express.static('services'));
  
 // firebase admin 
 
-  const serviceAccount = require("./creative-agency-client-9d373-firebase-adminsdk-kqiyl-359dec1d23.json");
+  //const serviceAccount = JSON.parse(process.env.firebase_service);
+
+ 
+ // console.log(typeof process.env.FIREBASE_PRODUCT_ID);
+
 
   admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-    databaseURL: "https://creative-agency-client-9d373.firebaseio.com"
+    credential: admin.credential.cert({
+      projectId: `${process.env.FIREBASE_PROJECT_ID}`,
+      clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+      privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n') 
+    }),
+    databaseURL: process.env.FIREBASE_DATABASE_URL
   });
-
-
 
 
   const MongoClient = require('mongodb').MongoClient;
