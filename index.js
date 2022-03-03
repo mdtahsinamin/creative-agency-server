@@ -20,7 +20,7 @@ app.use(express.static('services'));
  
 // firebase admin 
 
-  const serviceAccount = require("./creative-agency-client-9d373-firebase-adminsdk-kqiyl-359dec1d23");
+  const serviceAccount = require("./creative-agency-client-9d373-firebase-adminsdk-kqiyl-359dec1d23.json");
 
   admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
